@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Controls.Hosting;
+using Microsoft.Maui.Controls.Maps;
 
 namespace EyeInTheSky
 {
@@ -16,8 +18,8 @@ namespace EyeInTheSky
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
-#endif
+            builder.Logging.AddDebug();
+#endif           
 
             return builder.Build();
         }

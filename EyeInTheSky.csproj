@@ -40,9 +40,9 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-    <MauiIcon Include="Resources\AppIcon\icon01.png" />
+    <MauiIcon Include="Resources\AppIcon\icon.png" />
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.png" BaseSize="1080,1920"/>
+		<MauiSplashScreen Include="Resources\Splash\splash.png" BaseSize="626,626" Color="#8A80BC" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -55,9 +55,26 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
+	  <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.1" />
+	  <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
+	  <PackageReference Include="Microsoft.Maui.Controls.Maps" Version="8.0.100" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\Apod.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MarsImage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Update="Microsoft.Maui.Controls" Version="8.0.100" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Update="Microsoft.Maui.Controls.Compatibility" Version="8.0.100" />
 	</ItemGroup>
 
 </Project>

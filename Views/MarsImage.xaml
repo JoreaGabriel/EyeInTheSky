@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EyeInTheSky.Views.MarsImage"
+             Title="Imagini de pe Marte">
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="25">           
+            
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Text="Alege rover" Grid.Column="0" Grid.Row="0" VerticalTextAlignment="Center" Padding="0,0,30,0"/>
+
+                <Picker x:Name="roverPicker" Grid.Column="1" Grid.Row="0" Title="Curiosity sau Perseverance ?">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Curiosity</x:String>
+                            <x:String>Perseverance</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <Label Text="Alege data" Grid.Column="0" Grid.Row="1" VerticalTextAlignment="Center" Padding="0,0,30,0"/>
+                <DatePicker x:Name="earthDatePicker" Grid.Column="1" Grid.Row="1"/>
+            </Grid>
+            <Button Text="Încarcă imagini"
+                Clicked="Button_Clicked" />
+
+            <CollectionView x:Name="imagesCollection"
+                            ItemsSource="{Binding Photos}"
+                            Margin="0,10">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="4" CornerRadius="10" HasShadow="True">
+                            <Image Source="{Binding Img_src}"
+                               Aspect="AspectFill"
+                               HeightRequest="150">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Image_Tapped" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Button x:Name="previousButton" IsVisible="False" Text="⟨ Prev" Clicked="PreviousButton_Clicked" Padding="10" />
+                <Button x:Name="nextButton" IsVisible="False" Text="Next ⟩" Clicked="NextButton_Clicked" Padding="10" />
+            </StackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

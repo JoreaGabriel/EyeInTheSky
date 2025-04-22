@@ -4,14 +4,13 @@
              x:Class="EyeInTheSky.MainPage"
              BackgroundImageSource="main_bkg.png">
 
-    
     <ScrollView>
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
 
             <Label x:Name="labelQOTD"
-                   Text="'Acesta va fi un citat celebru'"
+                   Text="Aici ar trebui sa fie o gluma"
                    BackgroundColor="Transparent"
                    TextColor="AntiqueWhite"
                    HorizontalTextAlignment="Center"

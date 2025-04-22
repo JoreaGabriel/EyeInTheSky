@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EyeInTheSky.Views.Apod"             >
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="White"  Offset="0.0" />
+            <GradientStop Color="Khaki"  Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False"></BackButtonBehavior>
+    </Shell.BackButtonBehavior>
+    <ScrollView>
+        <VerticalStackLayout 
+        Padding="30,0"
+        Spacing="25">
+            <Label x:Name="titleLabel"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Text="" />
+
+            <Image x:Name="apodImage"
+                   HeightRequest="300"
+                   Aspect="AspectFill">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Image_Tapped" />
+                </Image.GestureRecognizers>
+            </Image>
+
+            <Label x:Name="descriptionLabel"
+                   FontSize="16"
+                   Text=""
+                   TextColor="Gray" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
