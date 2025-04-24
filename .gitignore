@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /appsettings.json
 /Resources/Raw/appsettings.json
+/Platforms/Android/AndroidManifest.xml
