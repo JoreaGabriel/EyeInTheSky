@@ -58,6 +58,7 @@
 	  <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.1" />
 	  <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
 	  <PackageReference Include="Microsoft.Maui.Controls.Maps" Version="8.0.100" />
+	  <PackageReference Include="Microsoft.Maui.Essentials" Version="8.0.100" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -65,6 +66,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\MarsImage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SatImage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

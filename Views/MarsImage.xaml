@@ -3,6 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EyeInTheSky.Views.MarsImage"
              Title="Imagini de pe Marte">
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="White"  Offset="0.0" />
+            <GradientStop Color="#f0b286"  Offset="2.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
     <ScrollView>
         <VerticalStackLayout Padding="30" Spacing="25">           
             

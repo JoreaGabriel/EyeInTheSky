@@ -15,7 +15,8 @@
                    TextColor="AntiqueWhite"
                    HorizontalTextAlignment="Center"
                    FontSize="Body"
-                   Margin="0,20,0,20"/>
+                   FontAttributes="Bold"
+                   Margin="0,20,0,40"/>
 
             <Button
                 x:Name="btnSatImg"
@@ -24,21 +25,12 @@
                 HorizontalOptions="Fill" 
                 ImageSource="btn_satelit.jpg"
                 Margin="20,0,20,0"
-                Padding="2"
+                Padding="3"
                 ContentLayout="Top, 5"
                 FontSize="Body"
-                />
-            <Button
-                x:Name="btnMarsImg"
-                Text="Mars rover views"                 
-                Clicked="btnMarsImg_Clicked"
-                HorizontalOptions="Fill" 
-                ImageSource="mars_rover.png"
-                Margin="20,0,20,0"
-                Padding="2"
-                ContentLayout="Top, 5"
-                FontSize="Body"
-                />
+                CornerRadius="5"
+                BorderColor="AntiqueWhite"
+                BorderWidth="1"/>
             <Button
                 x:Name="btnAPOD"
                 Text="Astronomy Picture of the Day"                 
@@ -46,10 +38,25 @@
                 HorizontalOptions="Fill" 
                 ImageSource="nasa_apod.jpg"
                 Margin="20,0,20,0"
-                Padding="2"
+                Padding="3"
                 ContentLayout="Top, 5"
                 FontSize="Body"
-                />
+                CornerRadius="5"
+                BorderColor="AntiqueWhite"
+                BorderWidth="1"/>
+            <Button
+                x:Name="btnMarsImg"
+                Text="Mars rover views"                 
+                Clicked="btnMarsImg_Clicked"
+                HorizontalOptions="Fill" 
+                ImageSource="mars_rover.png"
+                Margin="20,0,20,0"
+                Padding="3"
+                ContentLayout="Top, 5"
+                FontSize="Body"
+                CornerRadius="5" 
+                BorderColor="AntiqueWhite"
+                BorderWidth="1"/>
         </VerticalStackLayout>
     </ScrollView>
 

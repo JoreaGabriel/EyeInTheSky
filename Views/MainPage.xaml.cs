@@ -24,7 +24,7 @@ namespace EyeInTheSky
         }
         private void btnSatImg_Clicked(object sender, EventArgs e)
         {
-           
+           Navigation.PushAsync(new SatImage());
         }
 
         private void btnMarsImg_Clicked(object sender, EventArgs e)
