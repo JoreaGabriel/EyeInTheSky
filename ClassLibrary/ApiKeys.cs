@@ -18,7 +18,6 @@ namespace EyeInTheSky.ClassLibrary
             var settings = JsonSerializer.Deserialize<Dictionary<string, string>>(json);
             NASA_API_KEY = settings["NASA_API_KEY"];
             Weather_API_KEY = settings["Weather_API_KEY"];
-
         }
     }
 }

@@ -20,7 +20,7 @@
 
             <Button
                 x:Name="btnSatImg"
-                Text="Satellite image"                 
+                Text="Weather and satellite image"                 
                 Clicked="btnSatImg_Clicked"
                 HorizontalOptions="Fill" 
                 ImageSource="btn_satelit.jpg"

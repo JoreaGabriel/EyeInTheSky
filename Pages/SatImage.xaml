@@ -34,10 +34,16 @@
                 Text="Caută"
                 Margin="10" Grid.Column="1" Grid.Row="0"
                 Clicked="searchButton_Clicked"/>
+            <Label Text="Harta" Margin="10" Grid.Column="2" Grid.Row="0" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
             <Button x:Name="showMap"
                 Text="Harta"
                 Margin="10" Grid.Column="2" Grid.Row="0"
-                Clicked="showMap_Clicked"/>
+                Clicked="showMap_Clicked"
+                BackgroundColor="Transparent"
+                ImageSource="off.png"
+                ContentLayout="Right,20"/>
+
+
             <maps:Map x:Name="googleMap"
                   MapType="Satellite"
                   IsShowingUser="true"
@@ -71,10 +77,12 @@
 
             <Grid x:Name="swipeContent">                
                 <Image x:Name="nasaImage" HeightRequest="300" IsVisible="False" Aspect="AspectFill"/>
+                <Label x:Name="lblLoading" Text="Se descarca imaginea din satelit..." HorizontalTextAlignment="Center" VerticalTextAlignment="Center" IsVisible="False"/>
                 <StackLayout x:Name="weatherLayout" IsVisible="False" Padding="10">
                     <Label x:Name="weatherLocation" FontSize="20" Padding="10" />
                     <Image x:Name="weatherIcon" HeightRequest="80" WidthRequest="80" HorizontalOptions="Center"/>
-                    <Label x:Name="weatherLabel" FontSize="16" Padding="10" />                    
+                    <Label x:Name="weatherLabel" FontSize="16" Padding="10" />
+                    <Button x:Name="btnForecast" Text="Prognoza meteo" Clicked="btnForecast_Clicked"/>
                 </StackLayout>
             </Grid>
         </SwipeView>

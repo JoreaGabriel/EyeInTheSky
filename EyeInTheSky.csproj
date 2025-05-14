@@ -62,13 +62,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\Apod.xaml">
+	  <MauiXaml Update="Pages\Apod.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\MarsImage.xaml">
+	  <MauiXaml Update="Pages\MarsImage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\SatImage.xaml">
+	  <MauiXaml Update="Pages\SatImage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

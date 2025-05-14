@@ -21,16 +21,14 @@ public partial class SatImage : ContentPage
     {
         var position = e.Location;        
         coordLabel.Text = $"Lat: {position.Latitude:F6}, Long: {position.Longitude:F6}";                
-        googleMap.Pins.Clear();                
-        var pin = new Pin
-        {
-            Label = "Punct selectat",
-            Location = position,
-            Type = PinType.Place
-        };
-        googleMap.Pins.Add(pin);
+        SetPin(position, googleMap);
     }
-
+    private void showMap_Clicked(object sender, EventArgs e)
+    {
+        googleMap.IsVisible = !googleMap.IsVisible;
+        if (googleMap.IsVisible) showMap.ImageSource = "off.png";
+        else showMap.ImageSource = "on.png";
+    }
     private async void searchButton_Clicked(object sender, EventArgs e)
     {
         string locationName = locationEntry.Text;
@@ -43,19 +41,8 @@ public partial class SatImage : ContentPage
                 var location = locations.First();
 
                 var mapLocation = new Location(location.Latitude, location.Longitude);
-
-               
-                googleMap.MoveToRegion(MapSpan.FromCenterAndRadius(mapLocation, Distance.FromMiles(1)));
-                coordLabel.Text = $"Lat: {mapLocation.Latitude:F6}, Long: {mapLocation.Longitude:F6}";
-                googleMap.Pins.Clear();
-                var pin = new Pin
-                {
-                    Label = locationName,
-                    Location = mapLocation, 
-                    Type = PinType.Place
-                };
-
-                googleMap.Pins.Add(pin);
+                coordLabel.Text = $"Lat: {mapLocation.Latitude:F6}, Long: {mapLocation.Longitude:F6}"; 
+                SetPin(mapLocation, googleMap);                
             }
             else
             {
@@ -67,6 +54,20 @@ public partial class SatImage : ContentPage
             await DisplayAlert("Eroare", ex.Message, "OK");
         }
     }
+    public static async void SetPin(Location l, Microsoft.Maui.Controls.Maps.Map gMap)
+    {
+        gMap.MoveToRegion(MapSpan.FromCenterAndRadius(l, Distance.FromMiles(1)));
+        gMap.Pins.Clear();
+
+        var pin = new Pin
+        {
+            Label = "Punct selectat",
+            Location = l,
+            Type = PinType.Place
+        };
+
+        gMap.Pins.Add(pin);
+    }
     private async void SetLocation()
     {
         try
@@ -75,17 +76,7 @@ public partial class SatImage : ContentPage
             if (location != null)
             {
                 var position = new Location(location.Latitude, location.Longitude);
-                googleMap.MoveToRegion(MapSpan.FromCenterAndRadius(position, Distance.FromMiles(1)));
-                googleMap.Pins.Clear();
-
-                var pin = new Pin
-                {
-                    Label = "Punct selectat",
-                    Location = position,
-                    Type = PinType.Place
-                };
-
-                googleMap.Pins.Add(pin);
+                SetPin(position, googleMap);
             }
             else
             {
@@ -116,19 +107,16 @@ public partial class SatImage : ContentPage
         {
             await DisplayAlert("Eroare", $"Nu am putut incarca imaginea NASA.\n{ex.Message}", "OK");
         }
-    }    
+    }        
 
-    private void showMap_Clicked(object sender, EventArgs e)
+    private async void SwipeItem_Invoked(object sender, EventArgs e)
     {
-        googleMap.IsVisible = !googleMap.IsVisible;
-    }
-
-    private void SwipeItem_Invoked(object sender, EventArgs e)
-    {
-        nasaImage.Source = null;
-        LoadNasaImage(googleMap.Pins[0].Location.Latitude.ToString("F2", CultureInfo.InvariantCulture), googleMap.Pins[0].Location.Longitude.ToString("F2", CultureInfo.InvariantCulture));
-        nasaImage.IsVisible = true;
         weatherLayout.IsVisible = false;
+        lblLoading.IsVisible = true;
+        nasaImage.Source = null;
+        await LoadNasaImage(googleMap.Pins[0].Location.Latitude.ToString("F2", CultureInfo.InvariantCulture), googleMap.Pins[0].Location.Longitude.ToString("F2", CultureInfo.InvariantCulture));
+        nasaImage.IsVisible = true;        
+        lblLoading.IsVisible = false;
     }    
 
     private async Task<WeatherInfo> GetWeatherInfo(double lat, double lon)
@@ -137,6 +125,14 @@ public partial class SatImage : ContentPage
         var url = $"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={weatherApiKey}&units=metric&lang=ro";
         return await _httpClient.GetFromJsonAsync<WeatherInfo>(url);
     }
+
+    private async Task<WeatherForecast> GetForecast(double lat, double lon)
+    {
+        var _httpClient = new HttpClient();
+        var url = $"https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={weatherApiKey}&units=metric&lang=ro";
+        return await _httpClient.GetFromJsonAsync<WeatherForecast>(url);
+    }
+
     private async void OnWeatherSwipe(object sender, EventArgs e)
     {
         Location selectedPin = new Location(googleMap.Pins[0].Location.Latitude, googleMap.Pins[0].Location.Longitude);
@@ -151,6 +147,8 @@ public partial class SatImage : ContentPage
         nasaImage.IsVisible = false;
         weatherLayout.IsVisible = true;
         double pressure = Math.Round(weather.Main.Pressure * 0.75006, 1);
+        DateTime sunriseTime = DateTimeOffset.FromUnixTimeSeconds(weather.Sys.sunrise).ToLocalTime().DateTime;
+        DateTime sunsetTime = DateTimeOffset.FromUnixTimeSeconds(weather.Sys.sunset).ToLocalTime().DateTime;
         string iconCode = weather.Weather[0].Icon;
         string iconUrl = $"https://openweathermap.org/img/wn/{iconCode}@2x.png";
         weatherLocation.Text = $"Locatie: {weather.Name}";
@@ -159,6 +157,20 @@ public partial class SatImage : ContentPage
                                 $"Presiune: {pressure} mmHg\n" +
                                 $"Umiditate: {weather.Main.Humidity}%\n" +
                                 $"Vant: {weather.Wind.Speed} m/s\n" +
-                                $"Cer: {weather.Weather[0].Main} - {weather.Weather[0].Description}";
+                                $"Cer: {weather.Weather[0].Main} - {weather.Weather[0].Description}\n" +
+                                $"Rasarit: {sunriseTime.ToString("HH:mm")}\n" +
+                                $"Apus: {sunsetTime.ToString("HH:mm")}\n";
+    }
+   
+    private async void btnForecast_Clicked(object sender, EventArgs e)
+    {
+        Location selectedPin = new Location(googleMap.Pins[0].Location.Latitude, googleMap.Pins[0].Location.Longitude);
+        if (selectedPin == null)
+        {
+            await DisplayAlert("Info", "Selecteaza un punct pe harta", "OK");
+            return;
+        }
+        var weather = await GetForecast(selectedPin.Latitude, selectedPin.Longitude);
+
     }
 }

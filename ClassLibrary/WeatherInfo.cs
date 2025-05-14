@@ -12,6 +12,7 @@ namespace EyeInTheSky.ClassLibrary
         public List<WeatherDescription> Weather { get; set; }
         public WindInfo Wind { get; set; }
         public string Name { get; set; }
+        public Sys Sys { get; set; }
     }
 
     public class MainInfo
@@ -31,5 +32,10 @@ namespace EyeInTheSky.ClassLibrary
     public class WindInfo
     {
         public float Speed { get; set; }
+    }
+    public class Sys
+    {
+        public long sunrise { get; set; }
+        public long sunset { get; set; }
     }
 }
