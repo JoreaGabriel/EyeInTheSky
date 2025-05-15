@@ -145,6 +145,7 @@ public partial class SatImage : ContentPage
         var weather = await GetWeatherInfo(selectedPin.Latitude, selectedPin.Longitude);
 
         nasaImage.IsVisible = false;
+        ForecastList.IsVisible = false;
         weatherLayout.IsVisible = true;
         double pressure = Math.Round(weather.Main.Pressure * 0.75006, 1);
         DateTime sunriseTime = DateTimeOffset.FromUnixTimeSeconds(weather.Sys.sunrise).ToLocalTime().DateTime;
@@ -171,6 +172,17 @@ public partial class SatImage : ContentPage
             return;
         }
         var weather = await GetForecast(selectedPin.Latitude, selectedPin.Longitude);
+        ForecastList.IsVisible = true;
+        var displayList = weather.list.Select(item => new HourlyForecastDisplay
+        {
+            Hour = DateTimeOffset.FromUnixTimeSeconds(item.dt).ToLocalTime().ToString("dd MMM yyyy, HH:mm", CultureInfo.GetCultureInfo("ro-RO")),
+            Temp = $"Temperatura: {item.main.temp}°C",            
+            Pressure = $"Presiune: {Math.Round(item.main.pressure * 0.75006375541921,1)} mmHg",
+            Humidity = $"Umiditate: {item.main.humidity}%",
+            Description = item.weather.FirstOrDefault()?.description ?? "",
+            IconUrl = $"https://openweathermap.org/img/wn/{item.weather.FirstOrDefault()?.icon}@2x.png"
+        }).ToList();
 
+        ForecastList.ItemsSource = displayList;
     }
 }

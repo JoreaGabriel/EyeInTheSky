@@ -8,9 +8,9 @@ namespace EyeInTheSky.ClassLibrary
 {
     public class WeatherForecast
     {
-        public List<List> list { get; set; }
+        public List<ForecastItem> list { get; set; }
     }   
-    public class List
+    public class ForecastItem
     {
         public long dt { get; set; }
         public Main main { get; set; }
@@ -25,9 +25,17 @@ namespace EyeInTheSky.ClassLibrary
     }
     public class Main
     {
-        public double temp_min { get; set; }
-        public double temp_max { get; set; }
+        public double temp { get; set; }        
         public int pressure { get; set; }        
         public int humidity { get; set; }        
+    }
+    public class HourlyForecastDisplay
+    {
+        public string Hour { get; set; }
+        public string Temp { get; set; }        
+        public string Pressure { get; set; }
+        public string Humidity { get; set; }
+        public string Description { get; set; }
+        public string IconUrl { get; set; }
     }
 }
