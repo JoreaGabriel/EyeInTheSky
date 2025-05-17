@@ -17,46 +17,69 @@
                    FontSize="Body"
                    FontAttributes="Bold"
                    Margin="0,20,0,40"/>
+            <Button
+    x:Name="btnMarsImg"
+    Text="Mars rover views"                 
+    Clicked="btnMarsImg_Clicked"
+    HorizontalOptions="Fill" 
+    ImageSource="mars_rover.png"
+    Margin="20,0,20,0"
+    Padding="3"
+    ContentLayout="Top, 5"
+    FontSize="Body"
+    CornerRadius="5" 
+    BorderColor="AntiqueWhite"
+    BorderWidth="1"/>
+           
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
+                <Button
+                    x:Name="btnSatImg"
+                    Text="Satellite image"                 
+                    Clicked="btnSatImg_Clicked"
+                    HorizontalOptions="Fill" 
+                    ImageSource="btn_satelit.jpg"
+                    Margin="20,0,20,0"
+                    Padding="3"
+                    ContentLayout="Top, 5"
+                    FontSize="Body"
+                    CornerRadius="5"
+                    BorderColor="AntiqueWhite"
+                    BorderWidth="1"
+                    Grid.Column="0"/>
+                <Button
+                    x:Name="btnAPOD"
+                    Text="NASA APoD"                 
+                    Clicked="btnAPOD_Clicked"
+                    HorizontalOptions="Fill" 
+                    ImageSource="apod.jpg"
+                    Margin="20,0,20,0"
+                    Padding="3"
+                    ContentLayout="Top, 5"
+                    FontSize="Body"
+                    CornerRadius="5"
+                    BorderColor="AntiqueWhite"
+                    BorderWidth="1"
+                    Grid.Column="1"/>
+            </Grid>
             <Button
-                x:Name="btnSatImg"
-                Text="Weather and satellite image"                 
-                Clicked="btnSatImg_Clicked"
-                HorizontalOptions="Fill" 
-                ImageSource="btn_satelit.jpg"
-                Margin="20,0,20,0"
-                Padding="3"
-                ContentLayout="Top, 5"
-                FontSize="Body"
-                CornerRadius="5"
-                BorderColor="AntiqueWhite"
-                BorderWidth="1"/>
-            <Button
-                x:Name="btnAPOD"
-                Text="Astronomy Picture of the Day"                 
-                Clicked="btnAPOD_Clicked"
-                HorizontalOptions="Fill" 
-                ImageSource="nasa_apod.jpg"
-                Margin="20,0,20,0"
-                Padding="3"
-                ContentLayout="Top, 5"
-                FontSize="Body"
-                CornerRadius="5"
-                BorderColor="AntiqueWhite"
-                BorderWidth="1"/>
-            <Button
-                x:Name="btnMarsImg"
-                Text="Mars rover views"                 
-                Clicked="btnMarsImg_Clicked"
-                HorizontalOptions="Fill" 
-                ImageSource="mars_rover.png"
-                Margin="20,0,20,0"
-                Padding="3"
-                ContentLayout="Top, 5"
-                FontSize="Body"
-                CornerRadius="5" 
-                BorderColor="AntiqueWhite"
-                BorderWidth="1"/>
+        x:Name="btnWeather"
+        Text="Weather and air quality"                 
+        Clicked="btnWeather_Clicked"
+        HorizontalOptions="Fill" 
+        ImageSource="weather.jpg"
+        Margin="20,0,20,0"
+        Padding="3"
+        ContentLayout="Top, 5"
+        FontSize="Body"
+        CornerRadius="5"
+        BorderColor="AntiqueWhite"
+        BorderWidth="1"/>
         </VerticalStackLayout>
     </ScrollView>
 

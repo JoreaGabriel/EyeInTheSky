@@ -1,4 +1,5 @@
 ﻿using EyeInTheSky.ClassLibrary;
+using EyeInTheSky.Pages;
 using EyeInTheSky.Views;
 using System.Net.Http.Json;
 
@@ -35,6 +36,11 @@ namespace EyeInTheSky
         private void btnAPOD_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new Apod());
+        }
+
+        private void btnWeather_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new WeatherPage());
         }
     }
 
